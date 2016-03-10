@@ -282,7 +282,9 @@ class Geometry(DaeObject):
                 new_source = vert_ref
             else:
                 new_source = vert_sources[0]
-            self.sourceById[new_source + '-vertices'] = self.sourceById[new_source]
+            self.sourceById[new_source + '-vertices'] = {
+                input_vnode.get('semantic'): self.sourceById[new_source]
+            }
             input_vnode.set('source', '#' + new_source)
             vnode.set('id', new_source + '-vertices')
 
