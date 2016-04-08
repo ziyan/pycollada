@@ -57,7 +57,16 @@ if HAVE_LXML:
         xmlnode.write(fp, pretty_print=True)
 
     E = ElementMaker(namespace=get_collada_ns(), nsmap={None: get_collada_ns()})
-else:    
+else:
+
+    def getparent(self, root):
+        if not hasattr(root, '__parentmap') or root.__parentmap is None:
+            parentmap = dict((c, p) for p in root.getiterator() for c in p)
+            root.__parentmap = parentmap
+        return root.__parentmap.get(self, None)
+    etree.Element.getparent = getparent
+
+
     class ElementMaker(object):
         def __init__(self, namespace=None, nsmap=None):
             if namespace is not None:

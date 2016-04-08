@@ -231,8 +231,7 @@ class Collada(object):
 
         etree_parser = ElementTree.XMLParser()
         try:
-            self.xmlnode = ElementTree.ElementTree(element=None,
-                    file=BytesIO(data))
+            self.xmlnode = ElementTree.parse(BytesIO(data), etree_parser)
         except ElementTree.ParseError as e:
             raise DaeMalformedError("XML Parsing Error: %s" % e)
 
