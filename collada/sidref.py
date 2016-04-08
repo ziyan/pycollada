@@ -52,7 +52,7 @@ class SIDREF(DaeObject):
                 chain_length = 0
                 while sid_pn_xmlnode is not None and sid_pn_xmlnode != prev_node.xmlnode:
                     chain_length += 1
-                    sid_pn_xmlnode = sid_pn_xmlnode.getparent(self.data.xmlnode)
+                    sid_pn_xmlnode = sid_pn_xmlnode.getparent()
                 if sid_pn_xmlnode is not None and (not best_sid_node or chain_length < best_chain_length):
                     (best_sid_node,best_chain_length) = (sid_node,chain_length)
 
